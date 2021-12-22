@@ -16,6 +16,7 @@ class ExtendsAbstractClass: AbstractClass() {
 }
 
 fun main(args: Array<String>) {
+    // https://kotlinlang.org/docs/object-declarations.html#creating-anonymous-objects-from-scratch
     val extendedClassInstance = object: AbstractClass() { // 싱글톤?
         override fun function1() {
             TODO("Not yet implemented")
