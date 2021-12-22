@@ -1,0 +1,306 @@
+import org.json.simple.JSONObject
+import org.json.simple.parser.JSONParser
+import kotlin.reflect.typeOf
+
+class JsonParsing
+
+
+fun main(args: Array<String>) {
+    val jsonString = """{
+  "success": true,
+  "origin": "대한민국 서울특별시 강남구 역삼동 793-18",
+  "destination":"서울대학교",
+  "route": {
+    "bounds": {
+      "northeast": {
+        "lat": 37.5518018,
+        "lng": 127.0736345
+      },
+      "southwest": {
+        "lat": 37.4928068,
+        "lng": 127.0340956
+      }
+    },
+    "copyrights": "Map data ©2021 SK telecom",
+    "legs": [
+      {
+        "arrival_time": {
+          "text": "오후 1:45",
+          "time_zone": "Asia/Seoul",
+          "value": 1627793102
+        },
+        "departure_time": {
+          "text": "오후 1:04",
+          "time_zone": "Asia/Seoul",
+          "value": 1627790668
+        },
+        "distance": {
+          "text": "9.3 km",
+          "value": 9293
+        },
+        "duration": {
+          "text": "41분",
+          "value": 2434
+        },
+        "end_address": "대한민국 서울특별시 광진구 군자동 능동로 209 별관 101호",
+        "end_location": {
+          "lat": 37.5518018,
+          "lng": 127.0736345
+        },
+        "start_address": "대한민국 서울특별시 강남구 역삼동 793-18",
+        "start_location": {
+          "lat": 37.4928068,
+          "lng": 127.0367729
+        },
+        "steps": [
+          {
+            "distance": {
+              "text": "0.3 km",
+              "value": 280
+            },
+            "duration": {
+              "text": "5분",
+              "value": 281
+            },
+            "end_location": {
+              "lat": 37.494174,
+              "lng": 127.034097
+            },
+            "html_instructions": "역삼초등학교까지 도보",
+            "polyline": {
+              "points": "ayycFyzjfWoGtO"
+            },
+            "start_location": {
+              "lat": 37.4928068,
+              "lng": 127.0367729
+            },
+            "steps": [
+              {
+                "distance": {
+                  "text": "0.3 km",
+                  "value": 280
+                },
+                "duration": {
+                  "text": "5분",
+                  "value": 281
+                },
+                "end_location": {
+                  "lat": 37.494174,
+                  "lng": 127.034097
+                },
+                "polyline": {
+                  "points": "ayycFyzjfWoGtO"
+                },
+                "start_location": {
+                  "lat": 37.4928068,
+                  "lng": 127.0367729
+                },
+                "travel_mode": "WALKING"
+              }
+            ],
+            "travel_mode": "WALKING"
+          },
+          {
+            "distance": {
+              "text": "3.3 km",
+              "value": 3263
+            },
+            "duration": {
+              "text": "9분",
+              "value": 556
+            },
+            "end_location": {
+              "lat": 37.507356,
+              "lng": 127.064437
+            },
+            "html_instructions": "버스 복정역환승센터행",
+            "polyline": {
+              "points": "qazcFcjjfWA??AkHa^]iAsAiDACu@iBqEiLsBiFGSAAO_@q@gCoBuIk@iCACACyBwIyBgJYqAKe@MaA}BkJqCiM?Cy@wDYmAoE{RcAwEOu@ACyDePWw@]e@e@Mo@HsHpCWH"
+            },
+            "start_location": {
+              "lat": 37.494174,
+              "lng": 127.034097
+            },
+            "transit_details": {
+              "arrival_stop": {
+                "location": {
+                  "lat": 37.507356,
+                  "lng": 127.064437
+                },
+                "name": "삼성역"
+              },
+              "arrival_time": {
+                "text": "오후 1:18",
+                "time_zone": "Asia/Seoul",
+                "value": 1627791522
+              },
+              "departure_stop": {
+                "location": {
+                  "lat": 37.494174,
+                  "lng": 127.034097
+                },
+                "name": "역삼초등학교"
+              },
+              "departure_time": {
+                "text": "오후 1:09",
+                "time_zone": "Asia/Seoul",
+                "value": 1627790966
+              },
+              "headsign": "복정역환승센터",
+              "headway": 960,
+              "line": {
+                "agencies": [
+                  {
+                    "name": "서울특별시버스운송사업조합",
+                    "url": "http://www.odsay.com/Bus/Seoul_Main.asp?CID=1000&LMenu=1"
+                  }
+                ],
+                "color": "#374ff2",
+                "name": "서울 간선버스",
+                "short_name": "350",
+                "text_color": "#ffffff",
+                "vehicle": {
+                  "icon": "//maps.gstatic.com/mapfiles/transit/iw2/6/bus2.png",
+                  "name": "버스",
+                  "type": "BUS"
+                }
+              },
+              "num_stops": 7
+            },
+            "travel_mode": "TRANSIT"
+          },
+          {
+            "distance": {
+              "text": "5.4 km",
+              "value": 5392
+            },
+            "duration": {
+              "text": "16분",
+              "value": 935
+            },
+            "end_location": {
+              "lat": 37.551748,
+              "lng": 127.06957
+            },
+            "html_instructions": "버스 상계주공7단지행",
+            "polyline": {
+              "points": "_t|cFwgpfWeH`DyAn@oF`CsD`BaCfA{R|IKDaH|CaOxGgJ`EA?{EvBgAf@sAj@{AbA_Ad@oBdAqAd@eAJmACs@Sie@qTaPqHgKuFAAIC{OwGi@UAAsJsEwGaDkAi@AAaXaMECcGqCyIgEiHcDA@"
+            },
+            "start_location": {
+              "lat": 37.507356,
+              "lng": 127.064437
+            },
+            "transit_details": {
+              "arrival_stop": {
+                "location": {
+                  "lat": 37.551748,
+                  "lng": 127.06957
+                },
+                "name": "송정동서울숲아이파크"
+              },
+              "arrival_time": {
+                "text": "오후 1:38",
+                "time_zone": "Asia/Seoul",
+                "value": 1627792722
+              },
+              "departure_stop": {
+                "location": {
+                  "lat": 37.507356,
+                  "lng": 127.064437
+                },
+                "name": "삼성역"
+              },
+              "departure_time": {
+                "text": "오후 1:23",
+                "time_zone": "Asia/Seoul",
+                "value": 1627791787
+              },
+              "headsign": "상계주공7단지",
+              "headway": 660,
+              "line": {
+                "agencies": [
+                  {
+                    "name": "서울특별시버스운송사업조합",
+                    "url": "http://www.odsay.com/Bus/Seoul_Main.asp?CID=1000&LMenu=1"
+                  }
+                ],
+                "color": "#374ff2",
+                "name": "서울 간선버스",
+                "short_name": "146",
+                "text_color": "#ffffff",
+                "vehicle": {
+                  "icon": "//maps.gstatic.com/mapfiles/transit/iw2/6/bus2.png",
+                  "name": "버스",
+                  "type": "BUS"
+                }
+              },
+              "num_stops": 10
+            },
+            "travel_mode": "TRANSIT"
+          },
+          {
+            "distance": {
+              "text": "0.4 km",
+              "value": 358
+            },
+            "duration": {
+              "text": "6분",
+              "value": 359
+            },
+            "end_location": {
+              "lat": 37.5518018,
+              "lng": 127.0736345
+            },
+            "html_instructions": "대한민국 서울특별시 광진구 군자동 능동로 209 별관 101호까지 도보",
+            "polyline": {
+              "points": "miedFygqfWIkX"
+            },
+            "start_location": {
+              "lat": 37.551748,
+              "lng": 127.06957
+            },
+            "steps": [
+              {
+                "distance": {
+                  "text": "0.4 km",
+                  "value": 358
+                },
+                "duration": {
+                  "text": "6분",
+                  "value": 359
+                },
+                "end_location": {
+                  "lat": 37.5518018,
+                  "lng": 127.0736345
+                },
+                "polyline": {
+                  "points": "miedFygqfWIkX"
+                },
+                "start_location": {
+                  "lat": 37.551748,
+                  "lng": 127.06957
+                },
+                "travel_mode": "WALKING"
+              }
+            ],
+            "travel_mode": "WALKING"
+          }
+        ],
+        "traffic_speed_entry": [],
+        "via_waypoint": []
+      }
+    ],
+    "overview_polyline": {
+      "points": "ayycFyzjfWqGtOkHc^]iAsAiDw@mBoIiTO_@q@gC{C_NCGyBwIyBgJe@wBMaA}BkJqCmMsAeGeHm[yDePWw@]e@e@Mo@HsHpCWHoRrI}\\lOcXvLiJ`EcH~CsAj@{AbAoDjBqAd@eAJmACs@Skv@c^iKwFeP{GwTmKuZqN}QyIkHaDIkX"
+    },
+    "summary": "",
+    "warnings": [
+      "도보 경로는 베타 서비스입니다. 주의 – 이 경로에는 인도 또는 보행 경로가 누락되었을 수도 있습니다."
+    ],
+    "waypoint_order": []
+  }
+}"""
+    val jsonParser = JSONParser()
+    val jsonObject = jsonParser.parse(jsonString)
+    println(jsonObject)
+}
