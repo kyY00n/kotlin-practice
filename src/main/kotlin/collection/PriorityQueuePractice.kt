@@ -15,7 +15,7 @@ fun main(args: Array<String>) {
     queue.add(e2)
     queue.add(e1)
     queue.add(e3)
-    while (queue.) {
+    while (!queue.isEmpty()) {
         val e = queue.remove()
         println(e.event)
     }
