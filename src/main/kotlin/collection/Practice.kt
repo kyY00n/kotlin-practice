@@ -1,0 +1,4 @@
+package collection
+
+class Practice {
+}
