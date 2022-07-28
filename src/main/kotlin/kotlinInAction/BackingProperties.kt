@@ -8,6 +8,13 @@ class BackingProperties(
     val publicStrVal: String
         get() = strVar
 
+    var mutableBackingProperty: String // 변경가능한 backing property
+        get() = strVar
+        set(value: String) { // ㅜ 이게 무슨의미가 있을깡?.. 누가 좀 알려줘
+            // 알려 주셨다. https://stackoverflow.com/a/64582494
+            updateStrVar(value)
+        }
+
     fun updateStrVar(newStr: String) {
         strVar = newStr
     }
